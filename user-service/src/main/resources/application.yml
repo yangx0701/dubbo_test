@@ -1,0 +1,61 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: user-service
+  # mysql configuration
+  datasource:
+    url: jdbc:mysql://139.224.66.210:3306/dubbo?useUnicode=true&characterEncoding=utf-8&useSSL=false
+#    url: jdbc:mysql://localhost:3306/dubbo?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    schema-username: root
+    schema-password: root
+    schema:
+      - classpath:sql/user.sql
+    initialization-mode: always
+    platform: mysql
+    continue-on-error: true
+
+
+  # redis configuration
+#  redis:
+#    database: 0
+#    host: 139.224.66.210
+#    port: 6379
+#    password: yang-redis
+#    timeout:
+#    jedis:
+#      pool:
+#        max-active: 8
+# mybatis configuration
+mybatis:
+  mapper-locations: classpath*:mybatis/*.xml
+  type-aliases-package: com.yx.user.entity
+  configuration:
+    map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#    log-impl: org.apache.ibatis.logging.log4j.Log4jImpl
+logging:
+  level:
+    com.yx.us.mapper : debug
+
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+
+
+
+#xml 替代以下配置
+#dubbo:
+#  scan:
+#    base-packages: com.yx.user.service.impl
+#  protocol:
+#    name: dubbo
+#    port: 12345
+#  registry:
+#    address: N/A
+

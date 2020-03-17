@@ -1,0 +1,40 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+<!--    <dubbo:application name="demo-provider"/>-->  <!--yml里配置则此处删去-->
+    <!--多注册中心-->
+    <!--<dubbo:registry id="local"  address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:registry id="remote" address="zookeeper://192.168.5.3:2181"/>
+    <dubbo:reference id="fileService2" check="false" interface="com.yx.web.service.FileService" timeout="3000" retries="4" registry="local,remote"/>-->
+
+<!--    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>-->
+    <dubbo:registry address="zookeeper://139.224.66.210:2181"/>
+    <dubbo:protocol name="dubbo" port="12345"/>
+<!--    <dubbo:protocol name="http" port="8888"/>-->
+    <bean id="userServiceImpl" class="com.yx.us.service.impl.user.UserServiceImpl"/>
+    <dubbo:service interface="com.yx.api.service.UserService" ref="userServiceImpl" version="1.0.0" protocol="http"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--    <bean id="fileServiceImpl" class="com.yx.web.service.impl.FileServiceImpl"/>-->
+<!--    <dubbo:service group="user1" interface="UserService" ref="userServiceImpl" version="1.0.0" timeout="3000" cluster="failsafe">-->
+<!--        &lt;!&ndash;method 中timeout优先级高于类&ndash;&gt;-->
+<!--        <dubbo:method name="sayHello" timeout="6000"/>-->
+<!--    </dubbo:service>-->
+<!--    <dubbo:service group="user2" interface="UserService" ref="userServiceImpl2" version="1.0.0"/>-->
+<!--    <dubbo:service interface="com.yx.web.service.FileService" ref="fileServiceImpl" version="1.0.0" protocol="http"/>-->
+</beans>
